@@ -1,18 +1,19 @@
 public void setup()
 {
-	size(600, 600);
+	size(900, 900);
 }
 public void draw()
 {
-	sierpinski(300, 300, 500);
+	line(450,0,450,450);
+	line(450-450/tan(PI/3),450, 450+0.5*450/tan(PI/3), 450/2);
+	line(450+450/tan(PI/3),450, 450-0.5*450/tan(PI/3), 450/2);
+	sierpinski(450, 0, 450);
 }
-public void mouseDragged()//optional
-{ 
 
-}
-public void sierpinski(int x, int y, int len) 
+public void sierpinski(float x, float y, int len) 
 {
-	if(len<=20){
+	if(len<=2){
+		fill(0);
 		beginShape();
 			vertex(x, y);
 		    vertex(x-len/tan(PI/3), y+len);
@@ -20,6 +21,8 @@ public void sierpinski(int x, int y, int len)
 		endShape(CLOSE);
 	}
 	else{
-		sierpinski(x, y, len-1);
+		sierpinski(x+0.5*len/tan(PI/3), y+len/2, len/2);
+		sierpinski(x-0.5*len/tan(PI/3), y+len/2, len/2);
+		sierpinski(x, y, len/2);
 	}	
 }
