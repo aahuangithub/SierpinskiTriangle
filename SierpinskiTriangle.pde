@@ -1,13 +1,21 @@
+float t = 0;
 public void setup()
 {
 	size(900, 900);
+	frameRate(60);
 }
 public void draw()
 {
-	line(450,0,450,450);
-	line(450-450/tan(PI/3),450, 450+0.5*450/tan(PI/3), 450/2);
+	line(450,0,450,450*t/TWO_PI);
+	//y not changing properly
+	line(450-450/tan(PI/3),450, 450+(0.5*450/tan(PI/3)*t/TWO_PI), 450-225);
 	line(450+450/tan(PI/3),450, 450-0.5*450/tan(PI/3), 450/2);
-	sierpinski(450, 0, 450);
+
+	noFill();
+	arc(450, 450-72*2.1, 100, 100, 0, t);
+	
+	if(t<TWO_PI) t+=0.1;
+	else sierpinski(450, 0, 450);
 }
 
 public void sierpinski(float x, float y, int len) 
